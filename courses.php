@@ -1,4 +1,9 @@
-<?php include 'include/header.php'; ?>
+<?php 
+include 'include/header.php'; 
+include "connection.php";
+$sql_courses = "SELECT * FROM courses ORDER BY id DESC";
+$result_courses = mysqli_query($conn, $sql_courses);
+?>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -291,8 +296,8 @@
   <!-- ════ HERO ════ -->
   <div class="cs-hero">
     <!-- <div class="cs-hero__bg-text">Courses</div> -->
-    <div class="cs-hero__eyebrow">T9 Online Education</div>
-    <h1 class="cs-hero__title">Choose Your <em>Path</em></h1>
+    <div class="cs-hero__eyebrow">Higher Education Acdemy</div>
+    <h1 class="cs-hero__title">Choose Your <em>Course</em></h1>
     <p class="cs-hero__sub">Choose the path that fits your future — explore the programmes that shape careers.</p>
     <div class="cs-hero__rule">
       <span></span><i></i><span></span>
@@ -302,127 +307,30 @@
   <!-- ════ GRID ════ -->
   <div class="cs-section">
     <div class="cs-grid">
-
-      <!-- Medical -->
-      <div class="cs-card">
-        <div class="cs-card__img-wrap">
-          <img src="b2.jpeg" class="cs-card__img" alt="Medical">
-      
+      <?php if (mysqli_num_rows($result_courses) > 0): ?>
+        <?php while ($row = mysqli_fetch_assoc($result_courses)): ?>
+        <div class="cs-card">
+          <div class="cs-card__img-wrap">
+            <img src="admin/<?php echo htmlspecialchars($row['image']); ?>" class="cs-card__img" alt="<?php echo htmlspecialchars($row['name']); ?>">
+          </div>
+          <div class="cs-card__body">
+            <h3 class="cs-card__name"><?php echo htmlspecialchars($row['name']); ?></h3>
+            <div class="cs-card__rule"></div>
+            <p class="cs-card__desc"><?php echo strip_tags($row['content']); ?></p>
+            <a href="course-details.php?id=<?php echo (int)$row['id']; ?>" class="cs-card__cta">
+              <span>View Courses</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="cs-card__body">
-          <h3 class="cs-card__name">Medical</h3>
-          <div class="cs-card__rule"></div>
-          <p class="cs-card__desc">Medical is a career-focused field that helps students build a future in healthcare and patient care.
-            At T9 Online Education, we guide students for courses in Nursing, Pharmacy, Lab Technology, and Hospital Management.</p>
-          <a href="Medical1.php" class="cs-card__cta">
-            <span>View Courses</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
+        <?php endwhile; ?>
+      <?php else: ?>
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+          <h3>No Courses Found</h3>
         </div>
-      </div>
-
-      <!-- Engineering -->
-      <div class="cs-card">
-        <div class="cs-card__img-wrap">
-          <img src="b3.jpeg" class="cs-card__img" alt="Engineering">
-  
-        </div>
-        <div class="cs-card__body">
-          <h3 class="cs-card__name">Engineering</h3>
-          <div class="cs-card__rule"></div>
-          <p class="cs-card__desc">Engineering is a career-focused field that builds technical skills and innovation for a successful future.
-            At T9 Online Education, we guide students toward top engineering courses and career opportunities.</p>
-          <a href="engineering1.php" class="cs-card__cta">
-            <span>View Courses</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Management -->
-      <div class="cs-card">
-        <div class="cs-card__img-wrap">
-          <img src="mba.jpeg" class="cs-card__img" alt="Management">
-          
-        </div>
-        <div class="cs-card__body">
-          <h3 class="cs-card__name">Management</h3>
-          <div class="cs-card__rule"></div>
-          <p class="cs-card__desc">Management is a career-focused field that builds leadership and decision-making skills.
-            At T9 Online Education, we guide students toward careers in Business, HR, Marketing, and Project Management.</p>
-          <a href="management1.php" class="cs-card__cta">
-            <span>View Courses</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Commerce -->
-      <div class="cs-card">
-        <div class="cs-card__img-wrap">
-          <img src="b4.png" class="cs-card__img" alt="Commerce">
-        
-        </div>
-        <div class="cs-card__body">
-          <h3 class="cs-card__name">Commerce</h3>
-          <div class="cs-card__rule"></div>
-          <p class="cs-card__desc">Commerce is a career-focused field that builds knowledge in business, finance, and accounts.
-            At T9 Online Education, we guide students toward commerce courses and strong career opportunities.</p>
-          <a href="commerce1.php" class="cs-card__cta">
-            <span>View Courses</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Law -->
-      <div class="cs-card">
-        <div class="cs-card__img-wrap">
-          <img src="law.png" class="cs-card__img" alt="Law">
-        
-        </div>
-        <div class="cs-card__body">
-          <h3 class="cs-card__name">Law</h3>
-          <div class="cs-card__rule"></div>
-          <p class="cs-card__desc">Law is a career-focused field that develops legal knowledge, critical thinking, and justice skills.
-            At T9 Online Education, we guide students toward law courses and successful legal careers.</p>
-          <a href="law1.php" class="cs-card__cta">
-            <span>View Courses</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Dental -->
-      <div class="cs-card">
-        <div class="cs-card__img-wrap">
-          <img src="dental.png" class="cs-card__img" alt="Dental">
-
-        </div>
-        <div class="cs-card__body">
-          <h3 class="cs-card__name">Dental</h3>
-          <div class="cs-card__rule"></div>
-          <p class="cs-card__desc">Dental is a career-focused field that builds skills in oral healthcare and patient care.
-            At T9 Online Education, we guide students toward dental courses and professional career opportunities.</p>
-          <a href="dental1.php" class="cs-card__cta">
-            <span>View Courses</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
+      <?php endif; ?>
     </div>
   </div>
 

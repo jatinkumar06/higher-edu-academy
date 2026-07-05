@@ -43,7 +43,7 @@ $data = mysqli_fetch_assoc($result);
         <!-- ✅ Current Logo Preview -->
         <div class="mb-3">
           <label class="form-label">Current Logo</label><br>
-          <img src="uploads/<?php echo htmlspecialchars($data['logo']); ?>"
+          <img src="uploads/logo/<?php echo htmlspecialchars($data['logo']); ?>"
                style="width:150px; height:150px; object-fit:contain; border:1px solid #ddd; border-radius:8px; padding:5px;" alt="Current Logo">
         </div>
 
@@ -73,6 +73,9 @@ if (isset($_POST['update'])) {
   if (!is_dir("uploads")) {
     mkdir("uploads", 0777, true);
   }
+  if (!is_dir("uploads/logo")) {
+    mkdir("uploads/logo", 0777, true);
+  }
 
   // ✅ Handle photo upload
   $new_photo = false;
@@ -88,7 +91,7 @@ if (isset($_POST['update'])) {
   if (!empty($_FILES['logo']['name'])) {
     $logo_name      = $_FILES['logo']['name'];
     $temp_logo_name = $_FILES['logo']['tmp_name'];
-    move_uploaded_file($temp_logo_name, "uploads/" . $logo_name);
+    move_uploaded_file($temp_logo_name, "uploads/logo/" . $logo_name);
     $new_logo = $logo_name;
   }
 

@@ -148,6 +148,145 @@ include "connection.php";
     color: #fff;
     font-size: 30px;
   }
+
+  :root {
+    --uni-blue: #123a62;
+    --uni-red: #d32f2f;
+    --uni-gold: #ffc107;
+  }
+
+  .notice-section-wrapper {
+    background: #f8f9fa;
+    padding: 50px 0;
+  }
+
+  /* Left Side Buttons */
+  .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .btn-video {
+    background: linear-gradient(45deg, #ff0000, #b20000);
+    color: white !important;
+  }
+
+  .btn-download {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white !important;
+  }
+
+  .action-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .action-btn i {
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px;
+    border-radius: 50%;
+  }
+
+  /* Notice Board Right Side */
+  .notice-card {
+    background: white;
+    border-radius: 20px;
+    /* Curvy corners */
+    border: 1px solid #eee;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    height: 350px;
+    /* Increased Height */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .notice-header {
+    background: var(--uni-red);
+    color: white;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .notice-body {
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    flex-grow: 1;
+  }
+
+  /* Vertical Scroller */
+  .vertical-ticker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    animation: scrollUp 30s linear infinite;
+    /* Smooth continuous scroll */
+  }
+
+  .vertical-ticker:hover {
+    animation-play-state: paused;
+    /* Pauses on hover so user can read */
+  }
+
+  .notice-item {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #ddd;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .notice-item b {
+    color: var(--uni-blue);
+  }
+
+  .notice-item .bullet {
+    color: var(--uni-red);
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  @keyframes scrollUp {
+    0% {
+      transform: translateY(100%);
+    }
+
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .notice-card {
+      height: 300px;
+    }
+
+    .action-btn {
+      max-width: 100%;
+    }
+  }
 </style>
 <main class="main">
 
@@ -155,7 +294,7 @@ include "connection.php";
   <div id="pageTitleCarousel"
     class="carousel slide page-title"
     data-bs-ride="carousel"
-    data-bs-interval="3000">
+    data-bs-interval="2000">
 
     <div class="carousel-inner">
 
@@ -182,31 +321,71 @@ include "connection.php";
   </div>
 
   <!-- Dynamic Notices Section -->
-  <?php
-  $notice_qry = mysqli_query($conn, "SELECT * FROM notices ORDER BY id DESC");
-  if (mysqli_num_rows($notice_qry) > 0) {
-  ?>
-  <div class="container-fluid py-2" style="background-color: #ffeb3b; border-bottom: 3px solid #ffc107; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; z-index: 10;">
-    <div class="row align-items-center">
-      <div class="col-md-2 col-4 text-center">
-        <span class="badge bg-danger fs-6 text-uppercase px-3 py-2 fw-bold blinking-text"><i class="fa-solid fa-bell me-1"></i> Latest News</span>
-      </div>
-      <div class="col-md-10 col-8">
-        <marquee direction="up" scrollamount="2" style="height: 45px; font-weight: 600; font-size: 1.1rem; color: #d32f2f; line-height: 2.2;" onmouseover="this.stop();" onmouseout="this.start();">
-          <?php while ($notice = mysqli_fetch_assoc($notice_qry)) { ?>
-            <div class="py-1">
-              <i class="fa-solid fa-caret-right"></i> <?php echo $notice['notice_text']; ?>
+  <section class="notice-section-wrapper">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <!-- Left Side: Modern Buttons -->
+        <div class="col-lg-4 col-md-5 mb-4 mb-md-0 d-flex flex-column align-items-center">
+          <a href="https://youtube.com/@akchannelbyanandkumar?si=aJ3aWhz7LxKItjLp" target="_blank" class="action-btn btn-video align-items-center">
+            <span>Watch Video</span>
+            <i class="fa-solid fa-play"></i>
+          </a>
+
+          <!-- <a href="#" class="action-btn btn-download">
+                    <span>Download</span>
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                </a> -->
+        </div>
+
+        <!-- Right Side: Notice Board -->
+        <div class="col-lg-8 col-md-7">
+          <div class="notice-card">
+            <div class="notice-header">
+              <i class="fa-solid fa-bullhorn me-2"></i> NOTICE BOARD
             </div>
-          <?php } ?>
-        </marquee>
+            <div class="notice-body">
+              <div class="vertical-ticker">
+                <?php
+                // Fetching from your database
+                $notice_qry = mysqli_query($conn, "SELECT * FROM notices ORDER BY id DESC");
+                if (mysqli_num_rows($notice_qry) > 0) {
+                  while ($notice = mysqli_fetch_assoc($notice_qry)) {
+                ?>
+                    <div class="notice-item">
+                      <span class="bullet">*</span>
+                      <?php
+                      // This allows bold tags etc if stored in database
+                      echo $notice['notice_text'];
+                      ?>
+                    </div>
+                <?php
+                  }
+                } else {
+                  echo "<p class='text-center'>No new updates.</p>";
+                }
+                ?>
+
+                <!-- To make the scroll seamless, we repeat the content once -->
+                <?php
+                mysqli_data_seek($notice_qry, 0); // Reset pointer
+                while ($notice = mysqli_fetch_assoc($notice_qry)) {
+                ?>
+                  <div class="notice-item">
+                    <span class="bullet">*</span>
+                    <?php echo $notice['notice_text']; ?>
+                  </div>
+                <?php
+                }
+                ?>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
-  <style>
-    .blinking-text { animation: blinker 1.5s linear infinite; }
-    @keyframes blinker { 50% { opacity: 0; } }
-  </style>
-  <?php } ?>
+  </section>
 
 
   <!-- Enquiry Modal -->
@@ -590,7 +769,7 @@ include "connection.php";
               Explore top universities with the best academic programs and career opportunities.
             </p>
             <a href="universities.php" class="btn btn-light fw-semibold">
-              Find University
+              Find Universities
             </a>
           </div>
         </div>
@@ -636,105 +815,146 @@ include "connection.php";
   </div>
 
   <!-- Courses Section -->
-  <section id="courses" class="courses section">
+  <style>
+    .course-item {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      /* needed for stretched-link */
+      transition: all 0.3s ease;
+    }
 
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up" style="text-align: center;">
-      <h2>Courses</h2>
-      <!-- <p>Popular Courses</p> -->
-      <p>Choose the path that fits your future</p>
-    </div><!-- End Section Title -->
+    .course-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
 
-    <div class="container">
+    .course-item img {
+      width: 100%;
+      height: 200px;
+      /* fixed image height so cards line up */
+      object-fit: cover;
+    }
 
-      <div class="row">
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-          <div class="course-item">
-            <img src="images/b2.jpeg" class="img-fluid" alt="...">
-            <div class="course-content">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <p class="category">BED</p>
-                <!-- <p class="price">$180</p> -->
-              </div>
+    .course-content {
+      flex: 1;
+      /* fills remaining space equally in every card */
+      display: flex;
+      flex-direction: column;
+    }
 
-              <h3><a href="#">BED</a></h3>
-              <p class="description" style="text-align: justify;">BED is a career-focused field that helps students build a future in healthcare and patient care.
-                At Higher Education Academy Online Education, we guide students for courses in Nursing, Pharmacy, Lab Technology, and Hospital Management.</p>
-              <!-- <div class="trainer d-flex justify-content-between align-items-center">
-                <div class="trainer-profile d-flex align-items-center">
-                  <img src="assets/img/trainers/trainer-3-2.jpg" class="img-fluid" alt="">
-                  <a href="#" class="trainer-link">Brandon</a>
-                </div>
-                <div class="trainer-rank d-flex align-items-center">
-                  <i class="bi bi-person user-icon"></i>&nbsp;20
-                  &nbsp;&nbsp;
-                  <i class="bi bi-heart heart-icon"></i>&nbsp;85
-                </div>
-              </div> -->
+    .course-content h3 {
+      min-height: 48px;
+      /* keeps title area consistent even if 1 vs 2 lines */
+    }
+
+    .course-content h3 a {
+      position: relative;
+      z-index: 2;
+      /* stays clickable above the stretched-link */
+      text-decoration: none;
+    }
+
+    .course-content .description {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      /* limit to 3 lines, change as needed */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-grow: 1;
+    }
+  </style>
+
+<style>
+  .course-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;   /* remove underline from whole card */
+    color: inherit;          /* prevent link-blue text everywhere */
+    transition: all 0.3s ease;
+  }
+
+  .course-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    color: inherit;
+  }
+
+  .course-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .course-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .course-content h3 {
+    min-height: 48px;
+  }
+
+  .course-content .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+  }
+  .header{
+    padding:0;
+  }
+</style>
+
+<section id="courses" class="courses section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up" style="text-align: center;">
+    <h2>Courses</h2>
+    <p>Choose the path that fits your future</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row">
+      <?php
+      $sql_idx_courses = "SELECT * FROM courses ORDER BY id DESC LIMIT 3";
+      $res_idx_courses = mysqli_query($conn, $sql_idx_courses);
+      if (mysqli_num_rows($res_idx_courses) > 0) {
+          $delay = 100;
+          while ($c_row = mysqli_fetch_assoc($res_idx_courses)) {
+      ?>
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="<?php echo $delay; ?>">
+        <a href="course-details.php?id=<?php echo (int)$c_row['id']; ?>" class="course-item">
+          <img src="admin/<?php echo htmlspecialchars($c_row['image']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($c_row['name']); ?>">
+          <div class="course-content">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <p class="category"><?php echo htmlspecialchars($c_row['name']); ?></p>
             </div>
+
+            <h3><?php echo htmlspecialchars($c_row['name']); ?></h3>
+            <p class="description" style="text-align: justify;"><?php echo strip_tags($c_row['content']); ?></p>
           </div>
-        </div> <!-- End Course Item-->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <div class="course-item">
-            <img src="images/b3.jpeg" class="img-fluid" alt="...">
-            <div class="course-content">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <p class="category">MED</p>
-                <!-- <p class="price">$169</p> -->
-              </div>
-
-              <h3><a href="#">MED</a></h3>
-              <p class="description" style="text-align:justify">MED is a career-focused field that builds technical skills and innovation for a successful future.
-                At Higher Education Academy Online Education, we guide students toward top engineering courses and career opportunities.</p>
-              <!-- <div class="trainer d-flex justify-content-between align-items-center">
-                <div class="trainer-profile d-flex align-items-center">
-                  <img src="assets/img/trainers/trainer-1-2.jpg" class="img-fluid" alt="">
-                  <a href="#" class="trainer-link">Antonio</a>
-                </div>
-                <div class="trainer-rank d-flex align-items-center">
-                  <i class="bi bi-person user-icon"></i>&nbsp;50
-                  &nbsp;&nbsp;
-                  <i class="bi bi-heart heart-icon"></i>&nbsp;65
-                </div>
-              </div> -->
-            </div>
-          </div>
-        </div> <!-- End Course Item-->
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-          <div class="course-item">
-            <img src="images/mba.jpeg" class="img-fluid" alt="...">
-            <div class="course-content">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <p class="category">CT</p>
-                <!-- <p class="price">$250</p> -->
-              </div>
-
-              <h3><a href="#">CT</a></h3>
-              <p class="description" style="text-align: justify;">CT is a career-focused field that builds leadership and decision-making skills.
-                At Higher Education Academy Online Education, we guide students toward careers in Business, HR, Marketing, and Project CT.</p>
-              <!-- <div class="trainer d-flex justify-content-between align-items-center">
-                <div class="trainer-profile d-flex align-items-center">
-                  <img src="assets/img/trainers/trainer-2-2.jpg" class="img-fluid" alt="">
-                  <a href="#" class="trainer-link">Lana</a>
-                </div>
-                <div class="trainer-rank d-flex align-items-center">
-                  <i class="bi bi-person user-icon"></i>&nbsp;35
-                  &nbsp;&nbsp;
-                  <i class="bi bi-heart heart-icon"></i>&nbsp;42
-                </div>
-              </div> -->
-            </div>
-          </div>
-        </div> <!-- End Course Item-->
-
-
-
+        </a>
       </div>
-
+      <?php
+              $delay += 100;
+          }
+      } else {
+          echo "<div class='col-12 text-center'><p>No courses found.</p></div>";
+      }
+      ?>
     </div>
 
-  </section><!-- /Courses Section -->
+  </div>
+
+</section><!-- /Courses Section -->
 
   <!-- Trainers Index Section -->
   <!-- <section id="trainers-index" class="section trainers-index">

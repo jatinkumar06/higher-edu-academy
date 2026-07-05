@@ -83,21 +83,42 @@
         font-weight: 800;
         letter-spacing: 0.5px;
     }
-</style>
-<!-- <h1>About Us</h1> -->
-<!-- Page Title / About Banner -->
-<div class="page-title about-banner d-flex align-items-center" data-aos="fade">
-    <div class="container position-relative text-center">
-        <h1>About Us</h1>
-        <p>
-            Empowering students with quality education, expert guidance,
-            and career-focused learning.
-        </p>
-    </div>
-</div>
-<!-- End Page Title -->
 
-<style>
+    /* Modal styling */
+    .enquiry-modal {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Header gradient */
+    .enquiry-modal .modal-header {
+        background: linear-gradient(135deg, #0d6efd, #123a62);
+        border-bottom: none;
+    }
+
+    /* Inputs */
+    .enquiry-modal .form-control {
+        border-radius: 10px;
+        padding: 10px 14px;
+    }
+
+    /* Gradient button */
+    .btn-gradient {
+        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 12px;
+        font-weight: 600;
+        transition: 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
+
     .about-banner {
         background: url("image.png") center center no-repeat;
         background-size: cover;
@@ -156,6 +177,20 @@
         }
     }
 </style>
+<!-- <h1>About Us</h1> -->
+<!-- Page Title / About Banner -->
+<div class="page-title about-banner d-flex align-items-center" data-aos="fade">
+    <div class="container position-relative text-center">
+        <h1>About Us</h1>
+        <p>
+            Empowering students with quality education, expert guidance,
+            and career-focused learning.
+        </p>
+    </div>
+</div>
+<!-- End Page Title -->
+
+
 <div class="container mt-5 mb-5">
 
     <!-- <h2 class="text-center mb-5 page-title">About Higher Education Academy</h2> -->
@@ -163,7 +198,7 @@
     <div class="about-section founder-box" style=" text-align:justify;">
         <div class="row align-items-center">
             <div class="col-md-4 text-center">
-                <img src="user2.jpg" class="img-fluid rounded-circle shadow" alt="Founder">
+                <img src="images/ownerlogo.jpeg" class="img-fluid rounded-circle shadow" alt="Founder">
             </div>
             <div class="col-md-8">
                 <div class="section-icon"><i class="bi bi-person-circle"></i></div>
@@ -368,40 +403,5 @@
         </div>
     </div>
 </div>
-<style>
-    /* Modal styling */
-    .enquiry-modal {
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    }
 
-    /* Header gradient */
-    .enquiry-modal .modal-header {
-        background: linear-gradient(135deg, #0d6efd, #123a62);
-        border-bottom: none;
-    }
-
-    /* Inputs */
-    .enquiry-modal .form-control {
-        border-radius: 10px;
-        padding: 10px 14px;
-    }
-
-    /* Gradient button */
-    .btn-gradient {
-        background: linear-gradient(135deg, #0d6efd, #6610f2);
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 12px;
-        font-weight: 600;
-        transition: 0.3s ease;
-    }
-
-    .btn-gradient:hover {
-        opacity: 0.9;
-        transform: translateY(-1px);
-    }
-</style>
 <?php include 'include/footer.php'; ?>

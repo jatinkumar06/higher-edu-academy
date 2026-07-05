@@ -8,6 +8,7 @@
         <a href="index.php" class="logo d-flex align-items-center">
           <!-- <span class="sitename">Mentor</span> -->
           <img src="images/logo.jpeg" alt="" style="height:80px !important;">
+          <h3 style="text-transform: uppercase; font-weight:800;">Higher Education Academy</h3>
         </a>
         <div class="footer-contact pt-3">
           <p style="color: black; font-weight: bold; font-size: 18px;">
@@ -27,8 +28,8 @@
 
           <p class="mt-3" style="font-weight: bold;">
             <i class="fa-solid fa-envelope fa-lg" style="color: black;"></i>
-            <a href="mailto:info@demo.com" style="color: black; text-decoration: none; font-size: 16px;">
-              info@demo.com
+            <a href="mailto:highereducationacademybbsr@gmail.com" style="color: black; text-decoration: none; font-size: 16px;">
+              highereducationacademybbsr@gmail.com
             </a>
           </p>
         </div>
@@ -74,10 +75,10 @@
       <div class="col-lg-3 col-md-12 footer-newsletter">
         <h4 style="color: black;">Social Media</h4>
         <div class="social-links d-flex mt-4">
-          <a href="#"><i class="bi bi-youtube"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
-          <a href="#"><i class="bi bi-facebook"></i></a>
-          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://youtube.com/@akchannelbyanandkumar?si=aJ3aWhz7LxKItjLp" target="_blank"><i class="bi bi-youtube"></i></a>
+          <a href="https://instagram.com/akchannelbyanandkumar?utm_source=qr_code" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.facebook.com/share/1L8qx58aCk/" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="https://twitter.com/akchannelbyanandkumar" target="_blank"><i class="bi bi-twitter-x"></i></a>
           <!-- <a href="#"><i class="bi bi-linkedin"></i></a> -->
         </div>
       </div>

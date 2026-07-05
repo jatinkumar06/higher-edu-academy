@@ -71,15 +71,15 @@ $total_unread_count = $unread_enquiry_count + $unread_contact_count;
                     <div class="navbar-brand-box">
                         <a href="index.html" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="../../images/logo.jpeg" alt="" height="22">
+                                <img src="../images/logo.jpeg" alt="" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="../../images/logo.jpeg" alt="" height="17">
+                                <img src="../images/logo.jpeg" alt="" height="17">
                             </span>
                         </a>
 
                         <a href="#" class="logo logo-light">
-                            <img src="../../images/logo.jpeg" alt="" style="max-height: 60px;">
+                            <img src="../images/logo.jpeg" alt="" style="max-height: 60px; border-radius: 50%; ">
                             <!-- <span class="logo-sm">
                                 <img src="../pscollegelogo.png" alt="" height="22">
                             </span> -->
@@ -167,11 +167,29 @@ $total_unread_count = $unread_enquiry_count + $unread_contact_count;
                             <!-- <span class="badge rounded-pill bg-danger float-end">9+</span> -->
                             <span>Dashboards</span>
                         </a>
-                        <!-- <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="index.html">Dashboard 1</a></li>
-                                <li><a href="index-2.html">Dashboard 2</a></li>
-                            </ul> -->
+                        
                     </li>
+                    <li>
+                        <a href="courses.php" class=" waves-effect">
+                            <i class="fa-solid fa-book"></i> <span> Courses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="university.php" class=" waves-effect">
+                            <i class="fa-solid fa-building-columns"></i><span>Universities</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a href="admin_notice_list.php" class=" waves-effect">
+                            <i class="fa-solid fa-bullhorn"></i> <span>Notice List</span>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="admin_notice_list.php" class=" waves-effect">
+                            <i class="fa-solid fa-comments"></i>
+                            <span>Notice List</span>
+                        </a>
+                    </li> -->
 
                     <!-- <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -211,14 +229,9 @@ $total_unread_count = $unread_enquiry_count + $unread_contact_count;
                             <i class="fa-solid fa-user"></i>
                             <span>Show faulty Details</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="admin_notice_list.php" class=" waves-effect">
-                            <i class="fa-solid fa-comments"></i>
-                            <span>Notice List</span>
-                        </a>
-                    </li>
-                    <li>
+                    </li> -->
+                    
+                    <!-- <li>
                         <a href="vdo_data.php" class=" waves-effect">
                             <i class="fa-solid fa-video"></i>
                             <span>Gallery Video</span>
@@ -229,23 +242,7 @@ $total_unread_count = $unread_enquiry_count + $unread_contact_count;
                             <i class="fa-solid fa-paperclip"></i>
                             <span> Activities</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="courses.php" class=" waves-effect">
-                            <i class="fa-solid fa-book"></i> <span> Courses</span>
-                        </a>
-                    </li>
-                     <li>
-                        <a href="connect.php" class=" waves-effect">
-                            <i class="fa-solid fa-user"></i> <span> Contact</span>
-                        </a>
-                    </li>
-                      -->
-                    <li>
-                        <a href="admin_notice_list.php" class=" waves-effect">
-                            <i class="fa-solid fa-bullhorn"></i> <span>Notice List</span>
-                        </a>
-                    </li>
+                    </li> -->                                    
                     <li>
                         <a href="connect.php" class=" waves-effect">
                             <i class="fa-solid fa-user"></i> <span> Contact</span>
@@ -266,12 +263,8 @@ $total_unread_count = $unread_enquiry_count + $unread_contact_count;
                         <a href="colleges.php" class=" waves-effect">
                             <i class="fa-solid fa-house"></i> <span>Colleges</span>
                         </a>
-                    </li>
-                     <li>
-                        <a href="university.php" class=" waves-effect">
-                            <i class="fa-solid fa-building-columns"></i><span>Universities</span>
-                        </a>
                     </li> -->
+                     
                     <li>
                         <a href="gallery.php" class=" waves-effect">
                             <i class="fa-solid fa-images"></i> <span> Gallery</span>

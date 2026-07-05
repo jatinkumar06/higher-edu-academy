@@ -47,10 +47,13 @@ if (isset($_POST['upload'])) {
     if (!is_dir("uploads")) {
         mkdir("uploads", 0777, true);
     }
+    if (!is_dir("uploads/logo")) {
+        mkdir("uploads/logo", 0777, true);
+    }
 
     // STEP 2: Move uploaded file
     move_uploaded_file($temp_paths, "uploads/" . $uploaded_paths);
-    move_uploaded_file($temp_logo_paths, "uploads/" . $logo_paths);
+    move_uploaded_file($temp_logo_paths, "uploads/logo/" . $logo_paths);
     // STEP 3: Insert into database
     $sql = $conn->prepare("INSERT INTO university (university_name, university_photo, university_details,logo) VALUES (?, ?, ?, ?)");
     $sql->bind_param("ssss", $collegename, $uploaded_paths, $collegedetails, $logo_paths);

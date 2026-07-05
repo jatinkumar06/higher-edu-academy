@@ -167,45 +167,59 @@
         font-size: 0.9rem;
       }
     }
+
+
+    /* Mobile View */
+    @media (max-width: 768px) {
+      .logo {
+        gap: 10px;
+      }
+      .header .logo h1{
+        font-size:22px;
+      }
+    }
   </style>
 </head>
 
 <body class="index-page">
   <nav class="navbar" style="background-color: #123a62;">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
+    <div class="container-fluid d-flex flex-column flex-lg-row justify-content-lg-between align-items-center">
 
       <!-- Contact Info -->
-      <div style="display:flex; text-align:center;">
-        <p class="mt-3 mb-0 me-4 text-white">
-          <a href="tel:9861953662" class="text-white">
+      <div class="d-flex flex-column flex-lg-row align-items-center text-center pb-2 pb-lg-0">
+        <p class="mt-2 mt-lg-3 mb-0 me-lg-4 text-white">
+          <a href="tel:9861953662" class="text-white text-decoration-none">
             <i class="fa-solid fa-phone fa-lg"></i> 9861953662
           </a>
         </p>
-        <p class="mt-3 mb-0 text-white">
-          <a href="mailto:info@demo.com" class="text-white">
+        <p class="mt-2 mt-lg-3 mb-0 text-white">
+          <a href="mailto:highereducationacademybbsr@gmail.com" class="text-white text-decoration-none">
             <i class="fa-solid fa-envelope fa-lg"></i>
-            <span>info@demo.com</span>
+            <span>highereducationacademybbsr@gmail.com</span>
           </a>
         </p>
       </div>
 
-      <!-- Social Media Icons (DESKTOP ONLY) -->
-      <div class="d-none d-lg-flex align-items-center">
+      <!-- Social Media Icons -->
+      <div class="d-flex align-items-center mt-2 mt-lg-0 mb-2 mb-lg-0">
         <a href="https://wa.me/919861953662?text=Hello%2C%20I%20would%20like%20to%20get%20more%20details%20about%20the%20admission%20process."
           target="_blank"
-          class="text-white me-3">
+          class="text-white me-3 text-decoration-none">
           <i class="fa-brands fa-whatsapp fa-lg"></i>
         </a>
-        <a href="#" class="text-white me-3">
+        <a href="https://youtube.com/@akchannelbyanandkumar?si=aJ3aWhz7LxKItjLp" target="_blank" class="text-white me-3 text-decoration-none">
+          <i class="fa-brands fa-youtube fa-lg"></i>
+        </a>
+        <a href="https://www.facebook.com/share/1L8qx58aCk/" class="text-white me-3 text-decoration-none">
           <i class="fa-brands fa-facebook-f fa-lg"></i>
         </a>
-        <a href="#" class="text-white me-3">
+        <a href="#" class="text-white me-3 text-decoration-none">
           <i class="fa-brands fa-instagram fa-lg"></i>
         </a>
-        <a href="#" class="text-white me-3">
+        <a href="#" class="text-white me-3 text-decoration-none">
           <i class="fa-brands fa-linkedin-in fa-lg"></i>
         </a>
-        <a href="#" class="text-white">
+        <a href="#" class="text-white text-decoration-none">
           <i class="fa-brands fa-twitter fa-lg"></i>
         </a>
       </div>
@@ -223,7 +237,8 @@
 
       <!-- Logo -->
       <a href="index.php" class="logo d-flex align-items-center me-auto">
-        <img src="images/logo.jpeg" alt="Logo">
+        <img src="images/logo.jpeg" alt="Logo" style="border-radius:50%;">
+        <h1>Higher Education Academy</h1>
       </a>
 
       <!-- Navbar -->
@@ -246,12 +261,18 @@
           <li class="dropdown">
             <a href="#"><span>Courses</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <!-- <li><a href="management1.php" class="<?= ($currentPage == 'management1.php') ? 'active' : ''; ?>">Management</a></li>
-              <li><a href="engineering1.php" class="<?= ($currentPage == 'engineering1.php') ? 'active' : ''; ?>">Engineering</a></li>
-              <li><a href="law1.php" class="<?= ($currentPage == 'law1.php') ? 'active' : ''; ?>">Law</a></li>
-              <li><a href="commerce1.php" class="<?= ($currentPage == 'commerce1.php') ? 'active' : ''; ?>">Commerce</a></li>
-              <li><a href="medical1.php" class="<?= ($currentPage == 'medical1.php') ? 'active' : ''; ?>">Medical</a></li>
-              <li><a href="dental1.php" class="<?= ($currentPage == 'dental1.php') ? 'active' : ''; ?>">Dental</a></li> -->
+              <?php
+              include_once __DIR__ . '/../connection.php';
+              $course_qry = mysqli_query($conn, "SELECT id, name FROM courses ORDER BY name ASC");
+              if ($course_qry && mysqli_num_rows($course_qry) > 0) {
+                while ($course_row = mysqli_fetch_assoc($course_qry)) {
+                  $c_id = $course_row['id'];
+                  $c_name = htmlspecialchars($course_row['name']);
+                  $isActive = ($currentPage == 'course-details.php' && isset($_GET['id']) && $_GET['id'] == $c_id) ? 'active' : '';
+                  echo "<li><a href='course-details.php?id={$c_id}' class='{$isActive}'>{$c_name}</a></li>";
+                }
+              }
+              ?>
               <li><a href="others.php" class="<?= ($currentPage == 'others.php') ? 'active' : ''; ?>">Others</a></li>
 
             </ul>

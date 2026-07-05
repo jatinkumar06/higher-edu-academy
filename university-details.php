@@ -582,7 +582,7 @@ $data = mysqli_fetch_assoc($result);
 
     <?php if (!empty($data['logo'])) { ?>
       <img
-        src="admin/uploads/<?php echo htmlspecialchars($data['logo']); ?>"
+        src="admin/uploads/logo/<?php echo htmlspecialchars($data['logo']); ?>"
         alt="Logo"
         class="univ-header__logo">
     <?php } ?>

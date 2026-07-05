@@ -53,7 +53,7 @@ include "../connection.php";
                                                     <!-- ✅ Logo Column Added -->
                                                     <td>
                                                         <?php if (!empty($d['logo'])): ?>
-                                                            <img src="uploads/<?php echo htmlspecialchars($d['logo']); ?>"
+                                                            <img src="uploads/logo/<?php echo htmlspecialchars($d['logo']); ?>"
                                                                 alt="<?php echo htmlspecialchars($d['university_name']); ?> Logo"
                                                                 style="width:60px; height:60px; object-fit:contain; border:1px solid #ddd; border-radius:4px; padding:3px;">
                                                         <?php else: ?>
