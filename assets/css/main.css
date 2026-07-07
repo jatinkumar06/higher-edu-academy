@@ -1894,6 +1894,7 @@ section,
 
 /* Normal nav */
 .navmenu ul li a {
+  text-transform: uppercase;
   padding: 8px 16px;
   border-radius: 30px;
   transition: 0.3s ease;

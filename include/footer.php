@@ -12,11 +12,11 @@
         </a>
         <div class="footer-contact pt-3">
           <p style="color: black; font-weight: bold; font-size: 18px;">
-            1612, Lane Number 5, near BP COLLEGE, Jayadev Vihar
+            1612, LANE 5, NEAR BP COLLEGE, JAYDEV VIHAR
           </p>
 
           <p style="color: black; font-weight: bold; font-size: 18px;">
-            Bhubaneswar, Odisha 751013
+            BHUBANESWAR, ODISHA 751013
           </p>
 
           <p class="mt-3" style="font-weight: bold;">
@@ -57,18 +57,18 @@
       <div class="col-lg-2 col-md-3 footer-links">
         <h4 style="color: black;">Our Courses</h4>
         <ul>
-          <!-- <li><a style="color: black;" href="management1.php">Management</a></li>
-          <li><a style="color: black;" href="engineering1.php">Engineering</a></li>
-          <li><a style="color: black;" href="law1.php">Law</a></li>
-          <li><a style="color: black;" href="commerce1.php">Commerce</a></li>
-          <li><a style="color: black;" href="medical1.php">Medical</a></li>
-          <li><a style="color: black;" href="dental1.php">Dental</a></li>
-          <li><a style="color: black;" href="others.php">Others</a></li> -->
-          <li><a style="color: black;" href="#">BED</a></li>
-          <li><a style="color: black;" href="#">MED</a></li>
-          <li><a style="color: black;" href="#">SED</a></li>
-          <li><a style="color: black;" href="#">CT</a></li>
-
+          <?php
+          include_once __DIR__ . '/../connection.php';
+          $footer_course_qry = mysqli_query($conn, "SELECT id, name FROM courses ORDER BY name ASC");
+          if ($footer_course_qry && mysqli_num_rows($footer_course_qry) > 0) {
+            while ($footer_course_row = mysqli_fetch_assoc($footer_course_qry)) {
+              $fc_id = $footer_course_row['id'];
+              $fc_name = htmlspecialchars($footer_course_row['name']);
+              echo "<li><a style='color: black;' href='course-details.php?id={$fc_id}'>{$fc_name}</a></li>";
+            }
+          }
+          ?>
+          <li><a style="color: black;" href="others.php">Other Courses</a></li>
         </ul>
       </div>
 
@@ -76,9 +76,9 @@
         <h4 style="color: black;">Social Media</h4>
         <div class="social-links d-flex mt-4">
           <a href="https://youtube.com/@akchannelbyanandkumar?si=aJ3aWhz7LxKItjLp" target="_blank"><i class="bi bi-youtube"></i></a>
-          <a href="https://instagram.com/akchannelbyanandkumar?utm_source=qr_code" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.instagram.com/anandlovea3?igsh=czFsdWQ3dThkMThn" target="_blank"><i class="bi bi-instagram"></i></a>
           <a href="https://www.facebook.com/share/1L8qx58aCk/" target="_blank"><i class="bi bi-facebook"></i></a>
-          <a href="https://twitter.com/akchannelbyanandkumar" target="_blank"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://t.me/Anandjustme" target="_blank"><i class="fa-brands fa-telegram"></i></i></a>
           <!-- <a href="#"><i class="bi bi-linkedin"></i></a> -->
         </div>
       </div>

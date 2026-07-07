@@ -139,7 +139,7 @@ if (isset($_POST['upload'])) {
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-tag"></i> Course Fee (INR)</label>
-                            <input type="text" name="course_fee" class="form-control" placeholder="e.g. ₹45000" required>
+                            <input type="text" name="course_fee" class="form-control" placeholder="e.g. ₹45000" >
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-calendar-alt"></i> Start Date</label>
@@ -174,11 +174,11 @@ if (isset($_POST['upload'])) {
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-file-invoice-dollar"></i> Price Structure</label>
-                            <textarea name="price_structure" class="form-control" rows="2" placeholder="Breakdown of costs..." required></textarea>
+                            <textarea name="price_structure" class="form-control" rows="2" placeholder="Breakdown of costs..." ></textarea>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-clock"></i> Installment Options</label>
-                            <textarea name="installment_view" class="form-control" rows="2" placeholder="Payment plan details..." required></textarea>
+                            <textarea name="installment_view" class="form-control" rows="2" placeholder="Payment plan details..." ></textarea>
                         </div>
                     </div>
 

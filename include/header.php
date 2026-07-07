@@ -210,17 +210,17 @@
         <a href="https://youtube.com/@akchannelbyanandkumar?si=aJ3aWhz7LxKItjLp" target="_blank" class="text-white me-3 text-decoration-none">
           <i class="fa-brands fa-youtube fa-lg"></i>
         </a>
-        <a href="https://www.facebook.com/share/1L8qx58aCk/" class="text-white me-3 text-decoration-none">
+        <a href="https://www.facebook.com/share/1L8qx58aCk/" class="text-white me-3 text-decoration-none" target="_blank">
           <i class="fa-brands fa-facebook-f fa-lg"></i>
         </a>
-        <a href="#" class="text-white me-3 text-decoration-none">
+        <a href="https://www.instagram.com/anandlovea3?igsh=czFsdWQ3dThkMThn" class="text-white me-3 text-decoration-none" target="_blank">
           <i class="fa-brands fa-instagram fa-lg"></i>
         </a>
-        <a href="#" class="text-white me-3 text-decoration-none">
+        <!-- <a href="#" class="text-white me-3 text-decoration-none">
           <i class="fa-brands fa-linkedin-in fa-lg"></i>
-        </a>
-        <a href="#" class="text-white text-decoration-none">
-          <i class="fa-brands fa-twitter fa-lg"></i>
+        </a> -->
+        <a href="https://t.me/Anandjustme" class="text-white text-decoration-none" target="_blank">
+          <i class="fa-brands fa-telegram"></i>
         </a>
       </div>
 

@@ -95,9 +95,9 @@ include 'include/header.php'; ?>
             <i class="bi bi-geo-alt flex-shrink-0"></i>
             <div>
               <h3>Address</h3>
-              <p>1612, Lane Number 5, near BP COLLEGE, Jayadev Vihar
+              <p style="font-weight:600;">1612, LANE 5, NEAR BP COLLEGE, JAYDEV VIHAR
 
-Jaydev Vihar, Bhubaneswar, Odisha 751013</p>
+				BHUBANESWAR, ODISHA 751013</p>
             </div>
           </div><!-- End Info Item -->
 
@@ -105,7 +105,7 @@ Jaydev Vihar, Bhubaneswar, Odisha 751013</p>
             <i class="bi bi-telephone flex-shrink-0"></i>
             <div>
               <h3>Call Us</h3>
-              <p>9861953662</p>
+              <a href="tel: 9861953662" style="font-weight:600;"> 9861953662</a>
             </div>
           </div><!-- End Info Item -->
 
@@ -113,7 +113,8 @@ Jaydev Vihar, Bhubaneswar, Odisha 751013</p>
             <i class="bi bi-envelope flex-shrink-0"></i>
             <div>
               <h3>Email Us</h3>
-              <p> info@demo.com</p>
+              <a href="mailto:highereducationacademybbsr@gmail.com" style="font-weight:600;">highereducationacademybbsr@gmail.com
+              </a>
             </div>
           </div><!-- End Info Item -->
 

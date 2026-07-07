@@ -294,16 +294,20 @@ include "connection.php";
   <div id="pageTitleCarousel"
     class="carousel slide page-title"
     data-bs-ride="carousel"
-    data-bs-interval="2000">
+    data-bs-interval="3000">
 
     <div class="carousel-inner">
 
       <div class="carousel-item active">
-        <img src="images/banner.jpeg" class="hero-img" alt="Banner 1">
+        <img src="images/banner1.png" class="hero-img" alt="Banner 1">
+      </div>
+
+      <div class="carousel-item active">
+        <img src="images/banner2.png" class="hero-img" alt="Banner 2">
       </div>
 
       <div class="carousel-item">
-        <img src="images/banner1.jpeg" class="hero-img" alt="Banner 2">
+        <img src="images/banner3.png" class="hero-img" alt="Banner 3">
       </div>
       <!-- <div class="carousel-item">
         <img src="aboutus.png" class="hero-img" alt="Banner 2">
@@ -1160,9 +1164,9 @@ include "connection.php";
           <div class="info-item d-flex align-items-start shadow-sm" data-aos="fade-up" data-aos-delay="500">
             <i class="bi bi-envelope"></i>
             <div>
-              <a href="mailto:info@demo.com">
+              <a href="mailto:highereducationacademybbsr@gmail.com">
                 <h3>Email Us</h3>
-                <p> info@demo.com</p>
+                <p> highereducationacademybbsr@gmail.com</p>
               </a>
             </div>
           </div>

@@ -151,7 +151,7 @@ if (isset($_POST['upload'])) {
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-tag"></i> Course Fee (INR)</label>
-                            <input type="text" name="course_fee" class="form-control" value="<?php echo htmlspecialchars($data['course_fee'] ?? ''); ?>" required>
+                            <input type="text" name="course_fee" class="form-control" value="<?php echo htmlspecialchars($data['course_fee'] ?? ''); ?>" >
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-calendar-alt"></i> Start Date</label>
@@ -186,11 +186,11 @@ if (isset($_POST['upload'])) {
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-file-invoice-dollar"></i> Price Structure</label>
-                            <textarea name="price_structure" class="form-control" rows="2" required><?php echo htmlspecialchars($data['price_structure'] ?? ''); ?></textarea>
+                            <textarea name="price_structure" class="form-control" rows="2" ><?php echo htmlspecialchars($data['price_structure'] ?? ''); ?></textarea>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-clock"></i> Installment Options</label>
-                            <textarea name="installment_view" class="form-control" rows="2" required><?php echo htmlspecialchars($data['installment_view'] ?? ''); ?></textarea>
+                            <textarea name="installment_view" class="form-control" rows="2" ><?php echo htmlspecialchars($data['installment_view'] ?? ''); ?></textarea>
                         </div>
                     </div>
 

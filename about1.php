@@ -202,9 +202,9 @@
             </div>
             <div class="col-md-8">
                 <div class="section-icon"><i class="bi bi-person-circle"></i></div>
-                <h4>Founder’s Note</h4>
+                <h4>Founder’s Message</h4>
                 <p>
-                    Higher Education Academy was born from a personal observation—
+                    Higher Education Academy was born from 2016 and still purshuing the personal observation—
                     that too many students make life-shaping decisions while feeling rushed, overwhelmed, or unsure of themselves.
                 </p>
                 <p>
@@ -212,8 +212,7 @@
                 </p>
                 <p>At Higher Education Academy, we begin with the student—their story, their questions, and their vision for the future. Only when clarity emerges do we talk about options. This shift—from selling outcomes to enabling understanding—is at the heart of everything we do.</p>
                 <p>I believe students deserve honesty, patience, and respect in this process. They deserve guidance that reduces anxiety, not amplifies it. And they deserve to feel confident—not just admitted—when they take their next step.</p>
-                <p>Higher Education Academy exists to offer that experience.</p>
-                <p class="fw-bold">— Founder, Higher Education Academy</p>
+                <p class="fw-bold"> Founder, Mr. Ananda Kumar Behera</p>
             </div>
         </div>
     </div>
