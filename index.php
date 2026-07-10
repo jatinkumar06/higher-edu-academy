@@ -249,6 +249,7 @@ include "connection.php";
   }
 
   .notice-item {
+    display: flex;
     margin-bottom: 25px;
     padding-bottom: 15px;
     border-bottom: 1px dashed #ddd;
@@ -290,6 +291,29 @@ include "connection.php";
 </style>
 <main class="main">
 
+  <?php
+  // Fetch short notice for marquee
+  $short_notice_text = "";
+  $short_notice_qry = mysqli_query($conn, "SELECT notice_text FROM short_notices ORDER BY id DESC LIMIT 1");
+  if ($short_notice_qry && mysqli_num_rows($short_notice_qry) > 0) {
+      $sn_row = mysqli_fetch_assoc($short_notice_qry);
+      $short_notice_text = $sn_row['notice_text'];
+  }
+  
+  if (!empty($short_notice_text)) {
+  ?>
+  <div style="background-color: #ffc107;
+    color: #ac0000;
+    padding: 2px 0;
+    font-weight: bold;
+    font-size: 16px;">
+      <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+          <?php echo htmlspecialchars($short_notice_text); ?>
+      </marquee>
+  </div>
+  <?php
+  }
+  ?>
 
   <div id="pageTitleCarousel"
     class="carousel slide page-title"
@@ -425,14 +449,26 @@ include "connection.php";
             </div>
             <div class="mb-3">
               <label class="form-label">Courses</label>
+
               <select name="subject" class="form-control" required>
-                <option value="" disabled selected>Select course</option>
-                <option value="Management">Management</option>
-                <option value="Engineering">Engineering</option>
-                <option value="Medical">Medical</option>
-                <option value="Dental">Dental</option>
-                <option value="Commerce">Commerce</option>
-                <option value="Law">Law</option>
+                <option value="" disabled selected>Select Course</option>
+
+                <?php
+                include_once __DIR__ . '/../connection.php';
+
+                $course_qry = mysqli_query($conn, "SELECT id, name FROM courses ORDER BY name ASC");
+
+                if ($course_qry && mysqli_num_rows($course_qry) > 0) {
+                  while ($course_row = mysqli_fetch_assoc($course_qry)) {
+                    $course_name = htmlspecialchars($course_row['name']);
+                    $course_id = $course_row['id'];
+
+                    echo "<option value='{$course_name}' data-id='{$course_id}'>{$course_name}</option>";
+                  }
+                }
+                ?>
+
+                <option value="Others">Others</option>
               </select>
             </div>
 
@@ -871,94 +907,97 @@ include "connection.php";
     }
   </style>
 
-<style>
-  .course-item {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    text-decoration: none;   /* remove underline from whole card */
-    color: inherit;          /* prevent link-blue text everywhere */
-    transition: all 0.3s ease;
-  }
+  <style>
+    .course-item {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-decoration: none;
+      /* remove underline from whole card */
+      color: inherit;
+      /* prevent link-blue text everywhere */
+      transition: all 0.3s ease;
+    }
 
-  .course-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    color: inherit;
-  }
+    .course-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      color: inherit;
+    }
 
-  .course-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
+    .course-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
 
-  .course-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
+    .course-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
 
-  .course-content h3 {
-    min-height: 48px;
-  }
+    .course-content h3 {
+      min-height: 48px;
+    }
 
-  .course-content .description {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-grow: 1;
-  }
-  .header{
-    padding:0;
-  }
-</style>
+    .course-content .description {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-grow: 1;
+    }
 
-<section id="courses" class="courses section">
+    .header {
+      padding: 0;
+    }
+  </style>
 
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up" style="text-align: center;">
-    <h2>Courses</h2>
-    <p>Choose the path that fits your future</p>
-  </div><!-- End Section Title -->
+  <section id="courses" class="courses section">
 
-  <div class="container">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up" style="text-align: center;">
+      <h2>Courses</h2>
+      <p>Choose the path that fits your future</p>
+    </div><!-- End Section Title -->
 
-    <div class="row">
-      <?php
-      $sql_idx_courses = "SELECT * FROM courses ORDER BY id DESC LIMIT 3";
-      $res_idx_courses = mysqli_query($conn, $sql_idx_courses);
-      if (mysqli_num_rows($res_idx_courses) > 0) {
+    <div class="container">
+
+      <div class="row">
+        <?php
+        $sql_idx_courses = "SELECT * FROM courses ORDER BY id DESC LIMIT 3";
+        $res_idx_courses = mysqli_query($conn, $sql_idx_courses);
+        if (mysqli_num_rows($res_idx_courses) > 0) {
           $delay = 100;
           while ($c_row = mysqli_fetch_assoc($res_idx_courses)) {
-      ?>
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="<?php echo $delay; ?>">
-        <a href="course-details.php?id=<?php echo (int)$c_row['id']; ?>" class="course-item">
-          <img src="admin/<?php echo htmlspecialchars($c_row['image']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($c_row['name']); ?>">
-          <div class="course-content">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <p class="category"><?php echo htmlspecialchars($c_row['name']); ?></p>
-            </div>
+        ?>
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="<?php echo $delay; ?>">
+              <a href="course-details.php?id=<?php echo (int)$c_row['id']; ?>" class="course-item">
+                <img src="admin/<?php echo htmlspecialchars($c_row['image']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($c_row['name']); ?>">
+                <div class="course-content">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <p class="category"><?php echo htmlspecialchars($c_row['name']); ?></p>
+                  </div>
 
-            <h3><?php echo htmlspecialchars($c_row['name']); ?></h3>
-            <p class="description" style="text-align: justify;"><?php echo strip_tags($c_row['content']); ?></p>
-          </div>
-        </a>
-      </div>
-      <?php
-              $delay += 100;
+                  <h3><?php echo htmlspecialchars($c_row['name']); ?></h3>
+                  <p class="description" style="text-align: justify;"><?php echo strip_tags($c_row['content']); ?></p>
+                </div>
+              </a>
+            </div>
+        <?php
+            $delay += 100;
           }
-      } else {
+        } else {
           echo "<div class='col-12 text-center'><p>No courses found.</p></div>";
-      }
-      ?>
+        }
+        ?>
+      </div>
+
     </div>
 
-  </div>
-
-</section><!-- /Courses Section -->
+  </section><!-- /Courses Section -->
 
   <!-- Trainers Index Section -->
   <!-- <section id="trainers-index" class="section trainers-index">

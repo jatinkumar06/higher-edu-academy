@@ -174,8 +174,9 @@
       .logo {
         gap: 10px;
       }
-      .header .logo h1{
-        font-size:22px;
+
+      .header .logo h1 {
+        font-size: 22px;
       }
     }
   </style>
@@ -216,11 +217,15 @@
         <a href="https://www.instagram.com/anandlovea3?igsh=czFsdWQ3dThkMThn" class="text-white me-3 text-decoration-none" target="_blank">
           <i class="fa-brands fa-instagram fa-lg"></i>
         </a>
-        <!-- <a href="#" class="text-white me-3 text-decoration-none">
+        <a href="https://in.linkedin.com/in/anand-kumar-401289110" class="text-white me-3 text-decoration-none" target="_blank">
           <i class="fa-brands fa-linkedin-in fa-lg"></i>
-        </a> -->
-        <a href="https://t.me/Anandjustme" class="text-white text-decoration-none" target="_blank">
-          <i class="fa-brands fa-telegram"></i>
+        </a>
+        <a href="https://t.me/Anandjustme" class="text-white me-3 text-decoration-none" target="_blank">
+          <i class="fa-brands fa-telegram fa-lg"></i>
+        </a>
+
+        <a href="https://x.com/ANANDKU00761371" class="text-white text-decoration-none" target="_blank">
+          <i class="fa-brands fa-x-twitter fa-lg"></i>
         </a>
       </div>
 
@@ -253,7 +258,7 @@
             <a href="about1.php" class="<?= ($currentPage == 'about1.php') ? 'active' : ''; ?>">About</a>
           </li>
           <li>
-            <a href="assets/pdfs/certificate.pdf" target="_blank">
+            <a href="certificate.php" class="<?= ($currentPage == 'certificate.php') ? 'active' : ''; ?>" target="_blank">
               Certification
             </a>
           </li>

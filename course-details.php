@@ -20,14 +20,14 @@ if(!$course) {
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="col-lg-8">
-            <img src="admin/<?php echo htmlspecialchars($course['image']); ?>" class="img-fluid" alt="">
+          <div class="col-lg-12">
+            <img src="admin/<?php echo htmlspecialchars($course['image']); ?>" class="img-fluid" alt="" style="border-radius: 2%; overflow:hidden;">
             <h3><?php echo htmlspecialchars($course['name']); ?></h3>
             <div>
               <?php echo $course['content']; ?>
             </div>
           </div>
-          <div class="col-lg-4">
+          <!-- <div class="col-lg-4">
 
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Course Fee</h5>
@@ -39,7 +39,7 @@ if(!$course) {
               <p><?php echo htmlspecialchars($course['course_start_date'] ?? ''); ?></p>
             </div>
 
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -63,9 +63,9 @@ if(!$course) {
               <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Syllabus</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Price Structure</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Installment View</a>
               </li>

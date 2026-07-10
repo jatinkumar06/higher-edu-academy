@@ -17,6 +17,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_notice'])) {
     }
 }
 
+// Update Notice
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_notice'])) {
+
+    $id = intval($_POST['notice_id']);
+    $notice_text = trim($_POST['notice_text']);
+
+    if (!empty($notice_text)) {
+
+        $stmt = $conn->prepare("UPDATE notices SET notice_text=? WHERE id=?");
+        $stmt->bind_param("si", $notice_text, $id);
+
+        if ($stmt->execute()) {
+            header("Location: admin_notice_list.php?updated=1");
+            exit();
+        } else {
+            header("Location: admin_notice_list.php?update_error=1");
+            exit();
+        }
+    }
+}
+
 include "include/header.php";
 ?>
 
@@ -61,8 +82,8 @@ include "include/header.php";
                                     <thead class="table-dark">
                                         <tr>
                                             <th style="width: 5%;">ID</th>
-                                            <th style="width: 80%;">Notice Content</th>
-                                            <th style="width: 15%;">Action</th>
+                                            <th style="width: 75%;">Notice Content</th>
+                                            <th style="width: 20%;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -74,6 +95,13 @@ include "include/header.php";
                                                 <td><?php echo $count++; ?></td>
                                                 <td><?= $row['notice_text'] ?></td>
                                                 <td>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-sm btn-primary edit-btn"
+                                                        data-id="<?= $row['id']; ?>"
+                                                        data-notice="<?= htmlspecialchars($row['notice_text'], ENT_QUOTES); ?>">
+                                                        Edit
+                                                    </button>
                                                     <a href="delete_notice.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger delete-btn"
                                                         data-id="<?= $row['id'] ?>">Delete</a>
                                                 </td>
@@ -87,6 +115,60 @@ include "include/header.php";
 
                 </div>
             </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Edit Notice Modal -->
+<div class="modal fade" id="editNoticeModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <form method="POST" id="editNoticeForm">
+
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Edit Notice</h5>
+
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <input type="hidden" name="notice_id" id="edit_notice_id">
+
+                    <textarea
+                        id="edit_notice_text"
+                        name="notice_text"
+                        class="form-control"
+                        rows="6"></textarea>
+
+                    <input type="hidden" name="update_notice" value="1">
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        class="btn btn-secondary"
+                        type="button"
+                        data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+                    <button
+                        class="btn btn-success"
+                        type="submit">
+                        Update Notice
+                    </button>
+
+                </div>
+
+            </form>
 
         </div>
     </div>
@@ -106,6 +188,37 @@ include "include/header.php";
             console.error(error);
         });
 
+    let editEditor;
+    ClassicEditor
+        .create(document.querySelector('#edit_notice_text'), {
+            toolbar: ['bold', 'italic', 'underline', '|', 'link', '|', 'bulletedList', 'numberedList', '|', 'undo', 'redo']
+        })
+        .then(editor => {
+            editEditor = editor;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+    document.querySelectorAll('.edit-btn').forEach(button => {
+
+        button.addEventListener('click', function() {
+
+            const id = this.dataset.id;
+            const notice = this.dataset.notice;
+
+            document.getElementById('edit_notice_id').value = id;
+
+            if (editEditor) {
+                editEditor.setData(notice);
+            }
+
+            let modal = new bootstrap.Modal(document.getElementById('editNoticeModal'));
+            modal.show();
+
+        });
+
+    });
     // Sync CKEditor content back into the real textarea, then validate + submit
     document.getElementById('noticeForm').addEventListener('submit', function(e) {
         e.preventDefault(); // stop default submit so we can validate first
@@ -129,6 +242,29 @@ include "include/header.php";
         this.submit();
     });
 
+    // Sync CKEditor content back for edit form, then validate + submit
+    document.getElementById('editNoticeForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // stop default submit so we can validate first
+
+        if (editEditor) {
+            document.getElementById('edit_notice_text').value = editEditor.getData();
+        }
+
+        const content = document.getElementById('edit_notice_text').value.trim();
+
+        if (content === '' || content === '<p>&nbsp;</p>') {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Empty Notice',
+                text: 'Please enter some notice text before updating.'
+            });
+            return;
+        }
+
+        // all good — actually submit the form now
+        this.submit();
+    });
+
     // Show SweetAlert based on redirect query params
     const params = new URLSearchParams(window.location.search);
     if (params.get('success') === '1') {
@@ -141,11 +277,30 @@ include "include/header.php";
         });
         // clean the URL so refresh doesn't re-trigger the alert
         window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (params.get('updated') === '1') {
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Updated!',
+            text: 'Notice updated successfully.',
+            timer: 2000,
+            showConfirmButton: false
+        });
+
+        window.history.replaceState({}, document.title, window.location.pathname);
+
     } else if (params.get('error') === '1') {
         Swal.fire({
             icon: 'error',
             title: 'Something went wrong',
             text: 'Could not add the notice. Please try again.'
+        });
+        window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (params.get('update_error') === '1') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Update Failed',
+            text: 'Could not update the notice. Please try again.'
         });
         window.history.replaceState({}, document.title, window.location.pathname);
     }

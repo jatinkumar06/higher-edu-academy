@@ -184,6 +184,11 @@ $total_unread_count = $unread_enquiry_count + $unread_contact_count;
                             <i class="fa-solid fa-bullhorn"></i> <span>Notice List</span>
                         </a>
                     </li>
+                     <li>
+                        <a href="short_notice.php" class=" waves-effect">
+                            <i class="fa-solid fa-comment-dots"></i> <span>Short Notice</span>
+                        </a>
+                    </li>
                     <!-- <li>
                         <a href="admin_notice_list.php" class=" waves-effect">
                             <i class="fa-solid fa-comments"></i>

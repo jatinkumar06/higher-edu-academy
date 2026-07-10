@@ -45,9 +45,9 @@
         <h4 style="color: black;">Useful Links</h4>
         <ul>
           <li><a style="color: black;" href="index.php">Home</a></li>
-          <li><a style="color: black;" href="#">About us</a></li>
-          <li><a style="color: black;" href="#">Gallery</a></li>
-          <li><a style="color: black;" href="#">Contact</a></li>
+          <li><a style="color: black;" href="about.php">About us</a></li>
+          <li><a style="color: black;" href="gallery.php">Gallery</a></li>
+          <li><a style="color: black;" href="contact.php">Contact</a></li>
           <!-- <li><a style="color: black;" href="#">Privacy policy</a></li> -->
           <li><a style="color: black;" href="admin/login.php">Admin</a></li>
 
@@ -75,11 +75,17 @@
       <div class="col-lg-3 col-md-12 footer-newsletter">
         <h4 style="color: black;">Social Media</h4>
         <div class="social-links d-flex mt-4">
+          <a href="https://wa.me/919861953662?text=Hello%2C%20I%20would%20like%20to%20get%20more%20details%20about%20the%20admission%20process.">
+            <i class="fa-brands fa-whatsapp fa-lg"></i>
+          </a>
           <a href="https://youtube.com/@akchannelbyanandkumar?si=aJ3aWhz7LxKItjLp" target="_blank"><i class="bi bi-youtube"></i></a>
           <a href="https://www.instagram.com/anandlovea3?igsh=czFsdWQ3dThkMThn" target="_blank"><i class="bi bi-instagram"></i></a>
           <a href="https://www.facebook.com/share/1L8qx58aCk/" target="_blank"><i class="bi bi-facebook"></i></a>
           <a href="https://t.me/Anandjustme" target="_blank"><i class="fa-brands fa-telegram"></i></i></a>
-          <!-- <a href="#"><i class="bi bi-linkedin"></i></a> -->
+          <a href="https://in.linkedin.com/in/anand-kumar-401289110" target="_blank"><i class="bi bi-linkedin"></i></a>
+          <a href="https://x.com/ANANDKU00761371" target="_blank">
+            <i class="fa-brands fa-x-twitter fa-lg"></i>
+          </a>
         </div>
       </div>
 
