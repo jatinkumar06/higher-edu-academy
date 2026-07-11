@@ -1,75 +1,214 @@
-<?php
-include 'include/header.php';
-include "connection.php";
+<?php include 'include/header.php' ?>
 
-/* Fetch all college types under OTHER */
-$o = "Other";
-$collegeQry = "SELECT * FROM collegetype WHERE coursetype='$o'";
-$collegeRun = mysqli_query($conn, $collegeQry);
-?>
+<!-- Custom CSS for Premium Look -->
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-light);
+    }
 
-<div class="container mt-5 mb-5">
+    .course-header {
+        background: linear-gradient(rgba(26, 35, 126, 0.85), rgba(26, 35, 126, 0.85)),
+            url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+        margin-bottom: 50px;
+    }
 
-    <?php if (mysqli_num_rows($collegeRun) > 0) { ?>
+    .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: 800;
+        color: var(--primary-color);
+        position: relative;
+        padding-bottom: 15px;
+    }
 
-        <div class="section-title-wrapper" id="coursetitle">
-            <h2>OTHER AVAILABLE COURSES</h2>
-        </div>
-    <?php } ?>
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--accent-color);
+        border-radius: 2px;
+    }
 
-    <?php while ($college = mysqli_fetch_assoc($collegeRun)) { ?>
+    .course-card {
+        border: none;
+        border-radius: 20px;
+        transition: all 0.4s ease;
+        background: #fff;
+        overflow: hidden;
+        height: 100%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        /* Centers all text content */
+    }
 
-        <div class="course-table mb-5">
+    .course-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
 
-            <!-- College Type Header -->
-            <div class="course-table-header">
-                <?php echo $college['collegetype']; ?>
-            </div>
+    .course-img-container {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
 
-            <!-- Table Body -->
-            <div class="course-table-body">
-                <?php
-                $typeId = $college['id'];
-                $subQry = "SELECT * FROM subcourse WHERE collegetypeid='$typeId' ORDER BY id ASC";
-                $subRun = mysqli_query($conn, $subQry);
+    .course-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
 
-                $left  = [];
-                $right = [];
-                $index = 0;
+    .course-card:hover .course-img-container img {
+        transform: scale(1.1);
+    }
 
-                while ($sub = mysqli_fetch_assoc($subRun)) {
-                    ($index % 2 == 0) ? $left[] = $sub : $right[] = $sub;
-                    $index++;
-                }
+    .mode-tag {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #ff9800;
+        font-weight: 700;
+        margin-top: 15px;
+        display: block;
+    }
 
-                $maxRows = max(count($left), count($right));
+    .course-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 10px 0;
+        color: var(--primary-color);
+    }
 
-                for ($i = 0; $i < $maxRows; $i++) {
-                ?>
-                    <div class="course-row">
-                        <div class="course-col">
-                            <?php if (!empty($left[$i])) { ?>
-                                <a href="subcourse-details.php?id=<?php echo $left[$i]['id']; ?>" class="course-link">
-                                    <?php echo $left[$i]['subcourse']; ?>
-                                </a>
-                            <?php } ?>
-                        </div>
+    .free-section {
+        background-color: #fff;
+        padding: 80px 0;
+    }
 
-                        <div class="course-col">
-                            <?php if (!empty($right[$i])) { ?>
-                                <a href="subcourse-details.php?id=<?php echo $right[$i]['id']; ?>" class="course-link">
-                                    <?php echo $right[$i]['subcourse']; ?>
-                                </a>
-                            <?php } ?>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
+    /* Adjusting SC/ST Section for 5 items in a row */
+    .scst-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+    }
 
+    @media (max-width: 992px) {
+        .scst-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 
-    <?php } ?>
+    @media (max-width: 576px) {
+        .scst-grid {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+</style>
 
+<div class="course-header">
+    <div class="container">
+        <h1 class="display-3 fw-bold text-white">Explore Our free Courses</h1>
+        <p class="lead text-white-50">Excellence in Regular & Distance Education</p>
+    </div>
 </div>
 
-<?php include 'include/footer.php'; ?>
+<div class="container mb-5">
+    <!-- Academic Courses Section -->
+    <h2 class="section-title">Academic & Professional Programs</h2>
+    <div class="row g-4 mb-5">
+        <?php
+        $academic = [
+            ["name" => "BA", "img" => "https://images.unsplash.com/photo-1513258496099-48168024adb0?auto=format&fit=crop&w=500&q=60"],
+            ["name" => "B.SC", "img" => "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=500&q=60"],
+            ["name" => "B.COM", "img" => "https://images.unsplash.com/photo-1454165833222-3853b435215d?auto=format&fit=crop&w=500&q=60"],
+            ["name" => "MA", "img" => "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=60"],
+            ["name" => "M.SC", "img" => "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=500&q=60"],
+            ["name" => "M.COM", "img" => "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=500&q=60"]
+        ];
+        foreach ($academic as $course): ?>
+            <div class="col-md-4">
+                <div class="card course-card">
+                    <div class="course-img-container">
+                        <img src="<?php echo $course['img']; ?>" alt="<?php echo $course['name']; ?>">
+                    </div>
+                    <div class="p-4">
+                        <span class="mode-tag">Regular & Distance</span>
+                        <h3 class="course-name"><?php echo $course['name']; ?></h3>
+                        <p class="text-muted small px-3">Advance your career with our industry-recognized premium degree programs.</p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<!-- SC/ST Free Courses Section -->
+<div class="free-section shadow-sm">
+    <div class="container">
+        <h2 class="section-title">Scholarship Programs <br><small class="text-success" style="font-size: 1.2rem;">(FREE FOR SC/ST CATEGORY)</small></h2>
+        <div class="scst-grid">
+            <?php
+            $free_courses = [
+                ["name" => "BBA", "img" => "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=60"],
+                ["name" => "BCA", "img" => "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=60"],
+                ["name" => "MCA", "img" => "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=60"],
+                ["name" => "MSW", "img" => "https://images.unsplash.com/photo-1573497620053-ea530af494ad?auto=format&fit=crop&w=400&q=60"],
+                ["name" => "BSW", "img" => "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=60"]
+            ];
+            foreach ($free_courses as $f_course): ?>
+                <div class="card course-card">
+                    <div class="course-img-container" style="height: 140px;">
+                        <img src="<?php echo $f_course['img']; ?>" alt="<?php echo $f_course['name']; ?>">
+                    </div>
+                    <div class="p-3">
+                        <h5 class="fw-bold mb-1"><?php echo $f_course['name']; ?></h5>
+                        <span class="badge bg-success-light text-success w-100">Free Program</span>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+
+<!-- Medical Courses Section -->
+<div class="container mt-5 mb-5 pt-4">
+    <h2 class="section-title">Free Medical Courses</h2>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-5">
+            <div class="card course-card">
+                <div class="course-img-container">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=60" alt="ANM">
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="course-name">ANM</h3>
+                    <p class="text-muted">Auxiliary Nursing Midwifery</p>
+                    <div class="text-danger fw-bold"><i class="bi bi-heart-pulse"></i> 100% Scholarship Available</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card course-card">
+                <div class="course-img-container">
+                    <img src="https://images.unsplash.com/photo-1584515201114-616900f07297?auto=format&fit=crop&w=600&q=60" alt="GNM">
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="course-name">GNM</h3>
+                    <p class="text-muted">General Nursing and Midwifery</p>
+                    <div class="text-danger fw-bold"><i class="bi bi-hospital"></i> 100% Scholarship Available</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include 'include/footer.php' ?>
