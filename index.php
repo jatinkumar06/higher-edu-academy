@@ -296,21 +296,21 @@ include "connection.php";
   $short_notice_text = "";
   $short_notice_qry = mysqli_query($conn, "SELECT notice_text FROM short_notices ORDER BY id DESC LIMIT 1");
   if ($short_notice_qry && mysqli_num_rows($short_notice_qry) > 0) {
-      $sn_row = mysqli_fetch_assoc($short_notice_qry);
-      $short_notice_text = $sn_row['notice_text'];
+    $sn_row = mysqli_fetch_assoc($short_notice_qry);
+    $short_notice_text = $sn_row['notice_text'];
   }
-  
+
   if (!empty($short_notice_text)) {
   ?>
-  <div style="background-color: #ffc107;
+    <div style="background-color: #ffc107;
     color: #ac0000;
     padding: 2px 0;
     font-weight: bold;
     font-size: 16px;">
       <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-          <?php echo htmlspecialchars($short_notice_text); ?>
+        <?php echo htmlspecialchars($short_notice_text); ?>
       </marquee>
-  </div>
+    </div>
   <?php
   }
   ?>
@@ -323,15 +323,23 @@ include "connection.php";
     <div class="carousel-inner">
 
       <div class="carousel-item active">
-        <img src="images/banner1.png" class="hero-img" alt="Banner 1">
-      </div>
-
-      <div class="carousel-item active">
-        <img src="images/banner2.png" class="hero-img" alt="Banner 2">
+        <img src="images/Banner.png" class="hero-img" alt="Banner 1">
       </div>
 
       <div class="carousel-item">
-        <img src="images/banner3.png" class="hero-img" alt="Banner 3">
+        <img src="images/Banners.png" class="hero-img" alt="Banner 2">
+      </div>
+
+      <div class="carousel-item">
+        <img src="images/banner1.png" class="hero-img" alt="Banner 3">
+      </div>
+
+      <div class="carousel-item">
+        <img src="images/banner2.png" class="hero-img" alt="Banner 4">
+      </div>
+
+      <div class="carousel-item">
+        <img src="images/banner3.png" class="hero-img" alt="Banner 5">
       </div>
       <!-- <div class="carousel-item">
         <img src="aboutus.png" class="hero-img" alt="Banner 2">

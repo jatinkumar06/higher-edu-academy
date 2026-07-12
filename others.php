@@ -65,7 +65,7 @@
     .course-img-container img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: fill;
         transition: transform 0.5s ease;
     }
 
@@ -118,7 +118,7 @@
 <div class="course-header">
     <div class="container">
         <h1 class="display-3 fw-bold text-white">Explore Our free Courses</h1>
-        <p class="lead text-white-50">Excellence in Regular & Distance Education</p>
+        <p class="lead text-white-500">Excellence in Regular & Distance Education</p>
     </div>
 </div>
 
@@ -128,12 +128,12 @@
     <div class="row g-4 mb-5">
         <?php
         $academic = [
-            ["name" => "BA", "img" => "https://images.unsplash.com/photo-1513258496099-48168024adb0?auto=format&fit=crop&w=500&q=60"],
-            ["name" => "B.SC", "img" => "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=500&q=60"],
-            ["name" => "B.COM", "img" => "https://images.unsplash.com/photo-1454165833222-3853b435215d?auto=format&fit=crop&w=500&q=60"],
-            ["name" => "MA", "img" => "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=60"],
-            ["name" => "M.SC", "img" => "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=500&q=60"],
-            ["name" => "M.COM", "img" => "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=500&q=60"]
+            ["name" => "BA", "img" => "images/BA.png"],
+            ["name" => "BCA", "img" => "images/BCA.png"],
+            ["name" => "B.COM", "img" => "images/BCOM.png"],
+            ["name" => "M.A", "img" => "images/MA.png"],
+            ["name" => "M.SC", "img" => "images/MSC.png"],
+            ["name" => "M.COM", "img" => "images/MCOM.png"]
         ];
         foreach ($academic as $course): ?>
             <div class="col-md-4">
@@ -160,9 +160,9 @@
             <?php
             $free_courses = [
                 ["name" => "BBA", "img" => "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&q=60"],
-                ["name" => "BCA", "img" => "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=60"],
+                ["name" => "BCA", "img" => "images/BCA.png"],
                 ["name" => "MCA", "img" => "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=60"],
-                ["name" => "MSW", "img" => "https://images.unsplash.com/photo-1573497620053-ea530af494ad?auto=format&fit=crop&w=400&q=60"],
+                ["name" => "MSW", "img" => "images/MSW.png"],
                 ["name" => "BSW", "img" => "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=60"]
             ];
             foreach ($free_courses as $f_course): ?>
@@ -187,7 +187,7 @@
         <div class="col-md-5">
             <div class="card course-card">
                 <div class="course-img-container">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=60" alt="ANM">
+                    <img src="images/ANM.png" alt="ANM">
                 </div>
                 <div class="p-4 text-center">
                     <h3 class="course-name">ANM</h3>
@@ -199,7 +199,7 @@
         <div class="col-md-5">
             <div class="card course-card">
                 <div class="course-img-container">
-                    <img src="https://images.unsplash.com/photo-1584515201114-616900f07297?auto=format&fit=crop&w=600&q=60" alt="GNM">
+                    <img src="images/GNM.png" alt="GNM">
                 </div>
                 <div class="p-4 text-center">
                     <h3 class="course-name">GNM</h3>

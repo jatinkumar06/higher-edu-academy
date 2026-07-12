@@ -9,9 +9,9 @@ $run = mysqli_query($conn, $qry);
 $data = mysqli_fetch_assoc($run);
 
 if (isset($_POST['upload'])) {
-    $activities_name = $_POST['actvities_name'];
-    $content = $_POST['content'];
-    
+    $activities_name = mysqli_real_escape_string($conn, $_POST['actvities_name']);
+    $content = mysqli_real_escape_string($conn, $_POST['content']);
+
     // New fields
     $course_overview = mysqli_real_escape_string($conn, $_POST['course_overview']);
     $eligible_criteria = mysqli_real_escape_string($conn, $_POST['eligible_criteria']);
@@ -47,9 +47,30 @@ if (isset($_POST['upload'])) {
             WHERE id='$id'";
 
     if ($conn->query($sql)) {
-        echo "<script>alert('Course Updated Successfully!'); window.location='courses.php';</script>";
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Course Updated Successfully!',
+                    icon: 'success'
+                }).then(function() {
+                    window.location = 'courses.php';
+                });
+            });
+        </script>";
     } else {
-        echo "Database Error: " . $conn->error;
+        $error = addslashes(mysqli_error($conn));
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Database Error: {$error}',
+                    icon: 'error'
+                });
+            });
+        </script>";
     }
 }
 ?>
@@ -65,12 +86,14 @@ if (isset($_POST['upload'])) {
         background-color: #f4f7fe;
         font-family: 'Inter', sans-serif;
     }
+
     .form-card {
         background: #fff;
         border: none;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
+
     .form-label {
         font-weight: 600;
         color: #444;
@@ -79,22 +102,26 @@ if (isset($_POST['upload'])) {
         display: flex;
         align-items: center;
     }
+
     .form-label i {
         margin-right: 8px;
         color: #4e73df;
         width: 20px;
         text-align: center;
     }
+
     .form-control {
         border-radius: 8px;
         padding: 12px 15px;
         border: 1px solid #e1e5ef;
         transition: all 0.2s ease;
     }
+
     .form-control:focus {
         border-color: #4e73df;
         box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.1);
     }
+
     .section-title {
         font-size: 1.1rem;
         font-weight: 700;
@@ -103,6 +130,7 @@ if (isset($_POST['upload'])) {
         padding-bottom: 10px;
         border-bottom: 2px solid #f0f2f9;
     }
+
     .btn-submit {
         background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
         border: none;
@@ -114,11 +142,13 @@ if (isset($_POST['upload'])) {
         margin-top: 20px;
         transition: transform 0.2s;
     }
+
     .btn-submit:hover {
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
         color: white;
     }
+
     .image-preview-box {
         background: #f8f9fc;
         border: 2px dashed #d1d3e2;
@@ -139,7 +169,7 @@ if (isset($_POST['upload'])) {
                 </div>
 
                 <form action="" method="POST" enctype="multipart/form-data">
-                    
+
                     <!-- Section: Basic Information -->
                     <div class="section-title mt-0">
                         <i class="fas fa-info-circle me-2"></i> Basic Information
@@ -151,7 +181,7 @@ if (isset($_POST['upload'])) {
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-tag"></i> Course Fee (INR)</label>
-                            <input type="text" name="course_fee" class="form-control" value="<?php echo htmlspecialchars($data['course_fee'] ?? ''); ?>" >
+                            <input type="text" name="course_fee" class="form-control" value="<?php echo htmlspecialchars($data['course_fee'] ?? ''); ?>">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-calendar-alt"></i> Start Date</label>
@@ -167,7 +197,7 @@ if (isset($_POST['upload'])) {
                         <label class="form-label"><i class="fas fa-eye"></i> Course Overview</label>
                         <textarea name="course_overview" class="form-control" rows="2" required><?php echo htmlspecialchars($data['course_overview'] ?? ''); ?></textarea>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-user-check"></i> Eligibility Criteria</label>
@@ -186,11 +216,11 @@ if (isset($_POST['upload'])) {
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-file-invoice-dollar"></i> Price Structure</label>
-                            <textarea name="price_structure" class="form-control" rows="2" ><?php echo htmlspecialchars($data['price_structure'] ?? ''); ?></textarea>
+                            <textarea name="price_structure" class="form-control" rows="2"><?php echo htmlspecialchars($data['price_structure'] ?? ''); ?></textarea>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label"><i class="fas fa-clock"></i> Installment Options</label>
-                            <textarea name="installment_view" class="form-control" rows="2" ><?php echo htmlspecialchars($data['installment_view'] ?? ''); ?></textarea>
+                            <textarea name="installment_view" class="form-control" rows="2"><?php echo htmlspecialchars($data['installment_view'] ?? ''); ?></textarea>
                         </div>
                     </div>
 
@@ -198,11 +228,11 @@ if (isset($_POST['upload'])) {
                     <div class="section-title">
                         <i class="fas fa-photo-video me-2"></i> Media & Description
                     </div>
-                    
+
                     <div class="mb-4">
                         <label class="form-label"><i class="fas fa-image"></i> Course Cover Image</label>
                         <p class="text-muted small mb-2">Leave blank to keep the existing image.</p>
-                        <?php if(!empty($data['image'])): ?>
+                        <?php if (!empty($data['image'])): ?>
                             <div class="mb-2">
                                 <img src="<?php echo htmlspecialchars($data['image']); ?>" alt="Current Image" style="max-height: 100px; border-radius: 5px; object-fit: cover;">
                             </div>
