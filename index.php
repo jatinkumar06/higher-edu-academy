@@ -322,11 +322,11 @@ include "connection.php";
 
     <div class="carousel-inner">
 
-      <!-- <div class="carousel-item active">
-        <img src="images/banner1.png" class="hero-img" alt="Banner 1">
-      </div> -->
-
       <div class="carousel-item active">
+        <img src="images/banner1.png" class="hero-img" alt="Banner 1">
+      </div>
+
+      <div class="carousel-item">
         <img src="images/banner2.png" class="hero-img" alt="Banner 2">
       </div>
 
@@ -335,18 +335,14 @@ include "connection.php";
       </div>
 
       <div class="carousel-item">
-        <img src="images/banner4.png" class="hero-img" alt="Banner 4">
+        <img src="images/banner4.jpeg" class="hero-img" alt="Banner 4">
       </div>
 
       <div class="carousel-item">
         <img src="images/banner5.jpeg" class="hero-img" alt="Banner 5">
       </div>
-      <div class="carousel-item">
-        <img src="images/banner6.jpeg" class="hero-img" alt="Banner 6">
-      </div>
 
     </div>
-
     <button class="carousel-control-prev" type="button" data-bs-target="#pageTitleCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon"></span>
     </button>
@@ -546,7 +542,7 @@ include "connection.php";
       <div class="row gy-4">
 
         <div class="col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
-          <img src="images/banner1.png" class="img-fluid" alt="" style="border-radius: 15px;">
+          <img src="images/about-banner.png" class="img-fluid" alt="" style="border-radius: 15px;">
         </div>
 
         <div class="col-lg-7 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
@@ -562,7 +558,6 @@ include "connection.php";
             <li><i class="bi bi-check-circle" style="text-align: justify;"></i> <span>We step away from the transactional, pressure-driven model of education consulting and instead offer thoughtful, transparent guidance—where clarity comes before choice, purpose guides decisions, and every recommendation is made with integrity...</span></li>
             <!-- <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li> -->
           </ul>
-          <!-- <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a> -->
         </div>
 
       </div>
