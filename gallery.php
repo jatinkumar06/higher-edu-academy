@@ -97,18 +97,18 @@ include "connection.php";
         </div> -->
 
         <!-- Image 2 -->
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-12">
             <a href="image2.png" data-lightbox="gallery">
                 <img src="image2.png" class="img-fluid gallery-img" alt="Gallery Image 2">
             </a>
-        </div>
+        </div> -->
 
         <!-- Image 3 -->
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-12">
             <a href="image3.png" data-lightbox="gallery">
                 <img src="image3.png" class="img-fluid gallery-img" alt="Gallery Image 3">
             </a>
-        </div>
+        </div> -->
 
         <!-- Image 4 -->
         <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-12">

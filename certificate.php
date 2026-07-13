@@ -74,7 +74,7 @@
         font-size: 0.75rem;
         font-weight: bold;
         color: var(--primary-color);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .cert-info {
@@ -121,8 +121,15 @@
     }
 
     @keyframes modalFadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 
     .close-modal {
@@ -158,17 +165,28 @@
 
 <div class="cert-container">
     <h2 style="text-align:center; margin-bottom: 40px; color: #2c3e50;">My Professional Certifications</h2>
-    
+
     <div class="cert-grid">
         <!-- Card 1: Image Certificate -->
-        <div class="cert-card" data-type="image" data-src="assets/certs/google-cloud.jpg">
+        <div class="cert-card" data-type="image" data-src="assets/certs/udyam.jpeg">
             <div class="cert-thumbnail">
-                <div class="cert-badge">IMG</div>
-                <img src="assets/certs/image1.png" alt="BPUT Certificate">
+                <div class="cert-badge">Certificate</div>
+                <img src="assets/certs/udyam.jpeg" alt="UDYAM Certificate">
             </div>
             <div class="cert-info">
-                <h3>Certificate</h3>
-                <p>Issued by BPUT</p>
+                <h3>UDYAM Registration Certificate</h3>
+                <p>Issued by UDYAM</p>
+            </div>
+        </div>
+
+        <div class="cert-card" data-type="image" data-src="assets/certs/ugc.jpeg">
+            <div class="cert-thumbnail">
+                <div class="cert-badge">Certificate</div>
+                <img src="assets/certs/ugc.jpeg" alt="UGC Certificate">
+            </div>
+            <div class="cert-info">
+                <h3>UGC Copy</h3>
+                <p>Issued by RAYALASEEMA UNIVERSITY</p>
             </div>
         </div>
 
@@ -181,6 +199,17 @@
             <div class="cert-info">
                 <h3>Equivalency Certificate</h3>
                 <p>Issued by Utkal University</p>
+            </div>
+        </div>
+
+        <div class="cert-card" data-type="pdf" data-src="assets/certs/UGCmats.pdf">
+            <div class="cert-thumbnail">
+                <div class="cert-badge">PDF</div>
+                <img src="assets/certs/image.png" alt="Equivalency Certificate">
+            </div>
+            <div class="cert-info">
+                <h3>Ugc copy Mats university Certificate</h3>
+                <p>Issued by Mats university</p>
             </div>
         </div>
 
@@ -208,7 +237,7 @@
         card.addEventListener('click', () => {
             const type = card.getAttribute('data-type');
             const src = card.getAttribute('data-src');
-            
+
             modalBody.innerHTML = ''; // Clear previous content
 
             if (type === 'image') {

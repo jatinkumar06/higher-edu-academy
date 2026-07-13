@@ -303,7 +303,7 @@ include "connection.php";
   if (!empty($short_notice_text)) {
   ?>
     <div style="background-color: #ffc107;
-    color: #ac0000;
+    color: black;
     padding: 2px 0;
     font-weight: bold;
     font-size: 16px;">
@@ -322,28 +322,28 @@ include "connection.php";
 
     <div class="carousel-inner">
 
-      <div class="carousel-item active">
-        <img src="images/Banner.png" class="hero-img" alt="Banner 1">
-      </div>
-
-      <div class="carousel-item">
-        <img src="images/Banners.png" class="hero-img" alt="Banner 2">
-      </div>
-
-      <div class="carousel-item">
-        <img src="images/banner1.png" class="hero-img" alt="Banner 3">
-      </div>
-
-      <div class="carousel-item">
-        <img src="images/banner2.png" class="hero-img" alt="Banner 4">
-      </div>
-
-      <div class="carousel-item">
-        <img src="images/banner3.png" class="hero-img" alt="Banner 5">
-      </div>
-      <!-- <div class="carousel-item">
-        <img src="aboutus.png" class="hero-img" alt="Banner 2">
+      <!-- <div class="carousel-item active">
+        <img src="images/banner1.png" class="hero-img" alt="Banner 1">
       </div> -->
+
+      <div class="carousel-item active">
+        <img src="images/banner2.png" class="hero-img" alt="Banner 2">
+      </div>
+
+      <div class="carousel-item">
+        <img src="images/banner3.png" class="hero-img" alt="Banner 3">
+      </div>
+
+      <div class="carousel-item">
+        <img src="images/banner4.png" class="hero-img" alt="Banner 4">
+      </div>
+
+      <div class="carousel-item">
+        <img src="images/banner5.jpeg" class="hero-img" alt="Banner 5">
+      </div>
+      <div class="carousel-item">
+        <img src="images/banner6.jpeg" class="hero-img" alt="Banner 6">
+      </div>
 
     </div>
 
@@ -546,7 +546,7 @@ include "connection.php";
       <div class="row gy-4">
 
         <div class="col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
-          <img src="assets/img/b1.jpeg" class="img-fluid" alt="" style="border-radius: 15px;">
+          <img src="images/banner1.png" class="img-fluid" alt="" style="border-radius: 15px;">
         </div>
 
         <div class="col-lg-7 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
@@ -558,11 +558,11 @@ include "connection.php";
             magna aliqua.
           </p> -->
           <ul style="text-align: justify;">
-            <li><i class="bi bi-check-circle" style="text-align: justify;"></i> <span>Founded on the belief that every student’s journey is deeply personal, Higher Education Academy is an educational consulting firm dedicated to helping students discover their true aspirations, strengths, and long-term possibilities—before choosing an institution, course, or country.</span></li>
+            <li><i class="bi bi-check-circle" style="text-align: justify;"></i> <span>Founder on the belief that every student’s journey is deeply personal, Higher Education Academy is an educational consulting firm dedicated to helping students discover their true aspirations, strengths, and long-term possibilities—before choosing an institution, course, or country.</span></li>
             <li><i class="bi bi-check-circle" style="text-align: justify;"></i> <span>We step away from the transactional, pressure-driven model of education consulting and instead offer thoughtful, transparent guidance—where clarity comes before choice, purpose guides decisions, and every recommendation is made with integrity...</span></li>
             <!-- <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li> -->
           </ul>
-          <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+          <!-- <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a> -->
         </div>
 
       </div>

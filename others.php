@@ -133,7 +133,9 @@
             ["name" => "B.COM", "img" => "images/BCOM.png"],
             ["name" => "M.A", "img" => "images/MA.png"],
             ["name" => "M.SC", "img" => "images/MSC.png"],
-            ["name" => "M.COM", "img" => "images/MCOM.png"]
+            ["name" => "M.COM", "img" => "images/MCOM.png"],
+            ["name" => "B.Sc", "img" => "images/bsc.jpeg"],
+
         ];
         foreach ($academic as $course): ?>
             <div class="col-md-4">
